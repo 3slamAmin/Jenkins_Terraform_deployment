@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
+        AWS_SECRET_ACCESS_KEY    = credentials('aws_secret_access_key')
+        AWS_SESSION_TOKEN = credentials('aws_session_token')
+    }
+
     stages {
         // stage('Checkout') {
         //     steps {
@@ -29,4 +35,5 @@ pipeline {
                     junit 'terrascan.xml'
                 }
             }
+            
 }

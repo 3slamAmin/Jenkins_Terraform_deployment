@@ -12,6 +12,11 @@ pipeline {
                 sh 'terraform init'
             }
         }
+        stage("terrascan"){
+            steps{
+                 sh "terrascan scan -o junit-xml -d terraform/aws > terrascan.xml || true"
+            }
+        }
         stage('Terraform apply') {
             steps {
                 sh 'terraform apply --auto-approve'
@@ -19,4 +24,9 @@ pipeline {
         }
         
     }
+    post {
+                always {
+                    junit 'terrascan.xml'
+                }
+            }
 }

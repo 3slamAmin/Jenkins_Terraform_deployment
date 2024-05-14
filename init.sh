@@ -5,7 +5,7 @@ sudo npm install pm2@latest -g
 sudo pm2 startup
 cd ~/
 sudo touch test.txt
-wget https://github.com/3slamAmin/Github-CICD/releases/latest/download/dist.tar.gz
+wget  ${release_archive}
 sudo tar xf dist.tar.gz
 cd ~/dist/
 npm install 

@@ -14,3 +14,8 @@ variable "main_vpc_gw" {
  description = "gw_id"
  default     = "igw-015eab3ea9e7a46a8"
 }
+variable "artifact_url" {
+ type        = string
+ description = "version of release"
+ default     = "https://github.com/3slamAmin/Github-CICD/releases/latest/download/dist.tar.gz"
+}

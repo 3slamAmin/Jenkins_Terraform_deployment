@@ -55,5 +55,27 @@ This project uses the followint tools:
 ## Customization
 
 - *Initialization Script*: The init script (init.sh) can be modified to handle different artifacts or installation steps.
+
+bash script to install pm2 and start a nodejs web app.
+
+```
+#!/bin/bash
+sudo yum install -y wget
+sudo yum install -y nodejs
+sudo npm install pm2@latest -g
+sudo pm2 startup
+cd ~/
+sudo touch test.txt
+# terraform template variable, that's acquired from jenkins release url
+wget  ${release_archive}
+sudo tar xf dist.tar.gz
+cd ~/dist/
+npm install 
+sudo PORT=80 pm2 start "node main.js"
+```
+
 - *Terraform Variables*: Modify the variables in vars.tf to customize the subnets.
 - *Jenkins Pipeline*: Can be Modified to add or modify steps as per your workflow.
+
+ ![junit report](images/junit_repot.jpeg)
+ ![junit report](images/pipeline.jpeg)

@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'RELEASE_URL', defaultValue: 'https://github.com/3slamAmin/Github-CICD/releases/latest/download/dist.tar.gz', description: 'Release url to deploy')
+    }
 
     environment {
         AWS_ACCESS_KEY_ID = credentials('aws_access_key_id')
@@ -21,10 +24,13 @@ pipeline {
         }
         stage("terrascan"){
             steps{
-                 sh "terrascan scan -o junit-xml -d terraform/aws > terrascan.xml || true"
+                 sh "terrascan scan -o junit-xml > terrascan.xml || true"
             }
         }
         stage('Terraform apply') {
+            environment{
+                TF_VAR_artifact_url = ${params.RELEASE_URL}
+            }
             steps {
                 sh 'terraform apply --auto-approve'
             }

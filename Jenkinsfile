@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Terraform apply') {
             environment{
-                TF_VAR_artifact_url = ${params.RELEASE_URL}
+                TF_VAR_artifact_url = "${params.RELEASE_URL}"
             }
             steps {
                 sh 'terraform apply --auto-approve'

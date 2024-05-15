@@ -77,5 +77,5 @@ sudo PORT=80 pm2 start "node main.js"
 - *Terraform Variables*: Modify the variables in vars.tf to customize the subnets.
 - *Jenkins Pipeline*: Can be Modified to add or modify steps as per your workflow.
 
- ![junit report](images/junit_repot.jpeg)
+ ![junit report](images/junit_report.jpeg)
  ![junit report](images/pipeline.jpeg)
